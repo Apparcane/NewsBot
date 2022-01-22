@@ -26,5 +26,4 @@ def news(message):
                         'Ссылка: ' + articl['url']                        
                         )
 
-
 bot.polling(none_stop=True)
