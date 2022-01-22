@@ -5,13 +5,21 @@ import json
 
 bot = telebot.TeleBot(BOT_API)  # @appdouvenderbot
 
+@bot.message_handler(commands=['start', 'go'])
+def start(message):
+    print("Id: " + str(message.from_user.id) + "\nFirst Name: " +
+          str(message.from_user.first_name) + "\nText: " + str(message.text) + "\n")
+    bot.send_message(message.chat.id, "Воспользуйся командой - /news")
+
 @bot.message_handler(commands=['news'])
 def news(message):
     print("Id: " + str(message.from_user.id) + "\nFirst Name: " +
           str(message.from_user.first_name) + "\nText: " + str(message.text) + "\n")
+    
     with open('./json/news.json') as news_file:
         data = json.load(news_file)
     articles = data['articles']
+    
     for articl in articles:
         if articl['author'] == None:
             articl['author'] = 'Не указан'

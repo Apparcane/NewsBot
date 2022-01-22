@@ -1,11 +1,8 @@
 from time import sleep
-from classes import *
 from token import *
 from newsapi import NewsApiClient
 from tokens import News_tokken
 import json
-
-# mail = message
 
 i = 0
 
@@ -22,15 +19,3 @@ while True:
     print("Цыкл: " + str(i))
     i += 1
     sleep(10000)
-
-
-# for articl in articles:
-#     mail = message(
-#                source = articl['source']['name'], 
-#                title = articl['title'], 
-#                author = articl['author'], 
-#                descript = articl['description'], 
-#                url = articl['url']
-#                )
-
-# print(mail.display())
