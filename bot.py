@@ -20,18 +20,22 @@ def news(message):
         data = json.load(news_file)
     articles = data['articles']
     
-    for articl in articles:
-        if articl['author'] == None:
-            articl['author'] = 'Не указан'
-            
-        bot.send_message(
-                        message.chat.id, 
-                        "Свежие новости: " +  '\n' +
-                        'Источник: ' + articl['source']['name'] + '\n' +
-                        'Автор: ' + articl['author'] +  '\n\n' +
-                        articl['title'] + '\n' +
-                        articl['description'] +  '\n\n' +
-                        'Ссылка: ' + articl['url']                        
-                        )
+    if data['totalResults'] == 0:
+        bot.send_message(message.chat.id, "Свежих новостей нет.")
+        
+    else:
+        for articl in articles:
+            if articl['author'] == None:
+                articl['author'] = 'Не указан'
+                
+            bot.send_message(
+                            message.chat.id, 
+                            "Свежие новости: " +  '\n' +
+                            'Источник: ' + articl['source']['name'] + '\n' +
+                            'Автор: ' + articl['author'] +  '\n\n' +
+                            articl['title'] + '\n' +
+                            articl['description'] +  '\n\n' +
+                            'Ссылка: ' + articl['url']                        
+                            )
 
 bot.polling(none_stop=True)
